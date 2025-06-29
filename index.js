@@ -1,3 +1,6 @@
+import crypto from 'crypto';
+import { cacheService } from './cache-service.js';
+
 const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql';
 
 const SEARCH_QUERY = `
@@ -23,7 +26,16 @@ const SEARCH_QUERY = `
     }
 `;
 
-async function fetchData() {    
+async function fetchData() {
+    const queryHash = crypto.createHash('sha256').update(SEARCH_QUERY).digest('hex');
+    const cacheKey = `sparql:${queryHash}`;
+
+    const cached = await cacheService.get(cacheKey);
+    if (cached) {
+        console.log('Using cached query response.');
+        return cached;
+    }
+
     const url = new URL(SPARQL_ENDPOINT);
     url.searchParams.append('query', SEARCH_QUERY);
 
@@ -37,7 +49,13 @@ async function fetchData() {
     // TODO: Add error handling
 
     const result = await response.json();
-    console.log(result);
+    cacheService.set(cacheKey, result);
+    
+    return result;
 }
 
-(async () => await fetchData())();
+(async () => {
+    const data = await fetchData();
+    console.log(data);
+    await cacheService.quit();
+})();
