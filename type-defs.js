@@ -8,6 +8,18 @@ export const typeDefs = gql`
         RESERVOIR
     }
 
+    type Coordinates {
+        latitude: Float!
+        longitude: Float!
+    }
+
+    type WaterResource {
+        id: ID!
+        name: String!
+        type: WaterSourceType!
+        coordinates: Coordinates
+    }
+
     type Query {
         hello: String
     }
