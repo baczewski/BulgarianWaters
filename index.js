@@ -54,8 +54,41 @@ async function fetchData() {
     return result;
 }
 
+function transformToGraphQLFormat(input) {
+    if (!input.results || !input.results.bindings) {
+        return [];
+    }
+
+    const transformedContent = input.results.bindings.map((binding) => {
+        let longitude = null;
+        let latitude = null;
+
+        if (binding?.coord?.value) {
+            const coordinates = binding.coord.value;
+            const match = coordinates.match(/Point\(([^ ]+) ([^)]+)\)/);
+            if (match) {
+                longitude = parseFloat(match[1]);
+                latitude = parseFloat(match[2]);
+            }
+        }
+
+        return {
+            id: binding.item.value,
+            type: binding.typeLabel.value,
+            name: binding.itemLabel.value,
+            location: {
+                longitude,
+                latitude
+            }
+        };
+    });
+
+    return transformedContent;
+}
+
 (async () => {
     const data = await fetchData();
-    console.log(data);
+    const dataTransformed = transformToGraphQLFormat(data);
+    console.log(data.results.bindings[0]);
     await cacheService.quit();
 })();
