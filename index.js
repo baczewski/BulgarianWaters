@@ -92,23 +92,23 @@ function transformToGraphQLFormat(input) {
     return transformedContent;
 }
 
-(async () => {
-    const data = await waterResourceService.getAll();
-    const dataTransformed = graphqlTransformer.transform(data);
-    console.log(dataTransformed);
-    // const data = await sparqlClient.fetch(SEARCH_QUERY);
-    // const data = await fetchData();
-    // console.log(data.results.bindings[0]);
-    // const dataTransformed = transformToGraphQLFormat(data);
-    await cacheService.quit();
-})();
+// (async () => {
+//     const data = await waterResourceService.getAll();
+//     const dataTransformed = graphqlTransformer.transform(data);
+//     console.log(dataTransformed);
+//     // const data = await sparqlClient.fetch(SEARCH_QUERY);
+//     // const data = await fetchData();
+//     // console.log(data.results.bindings[0]);
+//     // const dataTransformed = transformToGraphQLFormat(data);
+//     await cacheService.quit();
+// })();
 
-// const server = new ApolloServer({
-//     typeDefs,
-//     resolvers,
-//     introspection: true,
-//     playground: true,
-//     formatError: (err) => console.log(err)
-// });
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true,
+    playground: true,
+    formatError: (err) => console.log(err)
+});
 
-// server.listen(8080).then(() => console.log('Listening on port 8080'));
+server.listen(4000).then(() => console.log('Listening on port 4000'));
