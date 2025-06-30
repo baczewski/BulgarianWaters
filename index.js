@@ -3,7 +3,8 @@ import { typeDefs } from './type-defs.js';
 import { resolvers } from './resolvers.js';
 import { ApolloServer } from 'apollo-server';
 import { cacheService } from './cache-service.js';
-import { sparqlClient } from './sparql-client.js';
+import SparqlClient from './sparql-client.js';
+import { waterResourceService } from './water-resource-service.js';
 
 const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql';
 
@@ -91,7 +92,8 @@ function transformToGraphQLFormat(input) {
 }
 
 (async () => {
-    const data = await sparqlClient.fetch(SEARCH_QUERY);
+    const data = await waterResourceService.getAll();
+    // const data = await sparqlClient.fetch(SEARCH_QUERY);
     // const data = await fetchData();
     console.log(data.results.bindings[0]);
     // const dataTransformed = transformToGraphQLFormat(data);

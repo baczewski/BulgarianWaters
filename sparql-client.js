@@ -22,4 +22,4 @@ class SparqlClient {
     }
 }
 
-export const sparqlClient = new SparqlClient();
+export default SparqlClient;
