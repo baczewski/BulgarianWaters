@@ -11,7 +11,7 @@ class GraphqlTransformer {
                 id: binding.item.value,
                 type: binding.typeLabel.value.toUpperCase(), // should match the enum in type-defs
                 name: binding.itemLabel.value,
-                location: {
+                coordinates: {
                     longitude,
                     latitude
                 }

@@ -9,8 +9,8 @@ export const typeDefs = gql`
     }
 
     type Coordinates {
-        latitude: Float!
-        longitude: Float!
+        latitude: Float
+        longitude: Float
     }
 
     type WaterResource {
@@ -23,6 +23,9 @@ export const typeDefs = gql`
     type Query {
         hello: String
 
-        waterResources: [WaterResource]
+        waterResources(
+            limit: Int
+            offset: Int
+        ): [WaterResource]
     }
 `;

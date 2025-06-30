@@ -13,7 +13,7 @@ class WaterResourceService {
         this.resourceTypes = Object.keys(this.resourceTypeMap);
     }
 
-    async getAll() {
+    async getAll(offset, limit) {
         const query = `
             SELECT ?item ?itemLabel ?typeId ?typeLabel ?coord ?capacity WHERE {
                 ?item wdt:P17 wd:Q219. # Located in Bulgaria
@@ -32,6 +32,8 @@ class WaterResourceService {
                 
                 SERVICE wikibase:label { bd:serviceParam wikibase:language "bg,en". }
             }
+            LIMIT ${limit}
+            OFFSET ${offset}
         `;
 
         return await this.sparqlClient.fetch(query);
