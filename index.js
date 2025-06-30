@@ -3,6 +3,7 @@ import { typeDefs } from './type-defs.js';
 import { resolvers } from './resolvers.js';
 import { ApolloServer } from 'apollo-server';
 import { cacheService } from './cache-service.js';
+import { sparqlClient } from './sparql-client.js';
 
 const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql';
 
@@ -89,19 +90,20 @@ function transformToGraphQLFormat(input) {
     return transformedContent;
 }
 
-// (async () => {
-//     const data = await fetchData();
-//     const dataTransformed = transformToGraphQLFormat(data);
-//     console.log(data.results.bindings[0]);
-//     await cacheService.quit();
-// })();
+(async () => {
+    const data = await sparqlClient.fetch(SEARCH_QUERY);
+    // const data = await fetchData();
+    console.log(data.results.bindings[0]);
+    // const dataTransformed = transformToGraphQLFormat(data);
+    await cacheService.quit();
+})();
 
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    introspection: true,
-    playground: true,
-    formatError: (err) => console.log(err)
-});
+// const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+//     introspection: true,
+//     playground: true,
+//     formatError: (err) => console.log(err)
+// });
 
-server.listen(8080).then(() => console.log('Listening on port 8080'));
+// server.listen(8080).then(() => console.log('Listening on port 8080'));
