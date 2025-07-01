@@ -2,23 +2,109 @@ import * as React from 'react';
 import Map, { NavigationControl, Marker } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+
 const waterResources = [
     {
-      coordinates: { latitude: 45.221944444, longitude: 29.743333333 },
-      id: 'http://www.wikidata.org/entity/Q1653',
-      name: 'Дунав',
+      "id": "http://www.wikidata.org/entity/Q12274444",
+      "name": "Ivailovgrad Hydroelectric Power Station",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.583722222,
+        "longitude": 26.107111111
+      }
     },
     {
-      coordinates: { latitude: 42.25008, longitude: 27.58922 },
-      id: 'http://www.wikidata.org/entity/Q1563774',
-      name: 'Ясна поляна',
+      "id": "http://www.wikidata.org/entity/Q21786713",
+      "name": "Studena dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 42.54097,
+        "longitude": 23.15896
+      }
     },
     {
-      coordinates: { latitude: 42.5, longitude: 27.4 },
-      id: 'http://www.wikidata.org/entity/Q1014783',
-      name: 'Бургаско езеро',
+      "id": "http://www.wikidata.org/entity/Q56043307",
+      "name": "Vacha Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.940483,
+        "longitude": 24.446307
+      }
     },
-];
+    {
+      "id": "http://www.wikidata.org/entity/Q114875614",
+      "name": "Chaira Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 42.159022222,
+        "longitude": 23.870913888
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q21786712",
+      "name": "Luda Yana dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 42.52167,
+        "longitude": 24.1975
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q111363913",
+      "name": "Koprinka Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 42.612825,
+        "longitude": 25.319522222
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q115452881",
+      "name": "Studen Kladenets Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.6196,
+        "longitude": 25.6418
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q21786711",
+      "name": "Plovdivtsi dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.40639,
+        "longitude": 24.80083
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q12284112",
+      "name": "Krichim Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.991905,
+        "longitude": 24.467626
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q114800799",
+      "name": "Yadenitsa Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 42.098,
+        "longitude": 23.88
+      }
+    },
+    {
+      "id": "http://www.wikidata.org/entity/Q12011150",
+      "name": "Tsankov Kamak Dam",
+      "type": "dam",
+      "coordinates": {
+        "latitude": 41.822433333,
+        "longitude": 24.441944444
+      }
+    }
+  ];
+  
 
 function WaterMap() {
     return (
@@ -41,7 +127,6 @@ function WaterMap() {
                     latitude={resource.coordinates.latitude}
                     anchor='bottom'
                 >
-
                 </Marker>
             ))}
 
