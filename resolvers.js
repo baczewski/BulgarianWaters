@@ -13,6 +13,17 @@ export const resolvers = {
             } catch (err) {
                 console.error('Error fetching water resources:', err);
             }
+        },
+        waterResource: async (_parent, args) => {
+            const { id } = args;
+
+            try {
+                const waterResource = await waterResourceService.getById(id);
+                const [resource] = graphqlTransformer.transform(waterResource);
+                return resource || null;
+            } catch (err) {
+                console.error('Error fetching water resource:', err);
+            }
         }
     }
 };

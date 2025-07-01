@@ -17,7 +17,7 @@ class GraphqlTransformer {
                 }
             };
         });
-    
+
         return transformedContent;
     }
 

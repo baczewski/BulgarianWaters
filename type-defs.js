@@ -27,5 +27,9 @@ export const typeDefs = gql`
             limit: Int
             offset: Int
         ): [WaterResource]
+
+        waterResource(
+            id: ID
+        ): WaterResource
     }
 `;
