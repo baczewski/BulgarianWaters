@@ -1,3 +1,6 @@
+import crypto from 'crypto';
+import { cacheService } from './cache-service.js';
+
 class SparqlClient {
     constructor() {
         this.endpoint = 'https://query.wikidata.org/sparql';
@@ -8,7 +11,14 @@ class SparqlClient {
     }
 
     async fetch(query) {
-        // TODO: Add caching and error handling
+        const queryHash = crypto.createHash('sha256').update(query).digest('hex');
+        const cacheKey = `sparql:${queryHash}`;
+
+        const cached = await cacheService.get(cacheKey);
+        if (cached) {
+            console.log('Using cached query response.');
+            return cached;
+        }
 
         const url = new URL(this.endpoint);
         url.searchParams.append('query', query);
@@ -18,6 +28,8 @@ class SparqlClient {
         });
 
         const result = await response.json();
+        cacheService.set(cacheKey, result);
+
         return result;
     }
 }
