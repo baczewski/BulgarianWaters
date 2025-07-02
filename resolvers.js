@@ -5,10 +5,10 @@ export const resolvers = {
     Query: {
         hello: () => console.log('Hello, Im Martin'),
         waterResources: async (_parent, args) => {
-            const { offset = 0, limit = 100 } = args;
+            const { offset = 0, limit = 100, type } = args;
 
             try {
-                const waterResources = await waterResourceService.getAll(offset, limit);
+                const waterResources = await waterResourceService.getAll(offset, limit, type);
                 return graphqlTransformer.transform(waterResources);
             } catch (err) {
                 console.error('Error fetching water resources:', err);

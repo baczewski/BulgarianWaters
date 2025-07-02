@@ -4,23 +4,28 @@ class WaterResourceService {
     constructor() {
         this.sparqlClient = new SparqlClient();
         this.resourceTypeMap = {
-            'River': 'wd:Q4022',
-            'Dam': 'wd:Q12323',
-            'Lake': 'wd:Q23397',
-            'Reservoir': 'wd:Q131681'
+            'RIVER': 'wd:Q4022',
+            'DAM': 'wd:Q12323',
+            'LAKE': 'wd:Q23397',
+            'RESERVOIR': 'wd:Q131681'
         };
 
         this.resourceTypes = Object.keys(this.resourceTypeMap);
     }
 
-    async getAll(offset, limit) {
+    async getAll(offset, limit, type) {
+        let typeFilter = '';
+        if (type && this.resourceTypeMap[type]) {
+            typeFilter = `VALUES ?typeId { ${this.resourceTypeMap[type]} }`;
+        } else {
+            typeFilter = `VALUES ?typeId { ${Object.values(this.resourceTypeMap).join('\n\t\t\t')} }`;
+        }
+
         const query = `
             SELECT ?item ?itemLabel ?typeId ?typeLabel ?coord ?capacity WHERE {
                 ?item wdt:P17 wd:Q219. # Located in Bulgaria
                 
-                VALUES ?typeId {
-                    ${Object.values(this.resourceTypeMap).join('\n\t\t\t')}
-                }
+                ${typeFilter}
                 
                 ?item wdt:P31/wdt:P279* ?typeId.
                 

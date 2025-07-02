@@ -26,6 +26,7 @@ export const typeDefs = gql`
         waterResources(
             limit: Int
             offset: Int
+            type: WaterSourceType
         ): [WaterResource]
 
         waterResource(

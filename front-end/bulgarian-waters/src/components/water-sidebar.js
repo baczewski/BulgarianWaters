@@ -1,28 +1,27 @@
 import React from 'react';
 import {
-  Drawer,
   List,
   ListItem,
   ListItemText,
   ListSubheader,
   Typography,
   Divider,
+  Box,
 } from '@mui/material';
 
 function WaterSidebar({ resources, onSelect }) {
   return (
-    <Drawer
-      variant="permanent"
-      anchor="right"
+    <Box
       sx={{
         width: 300,
+        boxSizing: 'border-box',
+        backgroundColor: '#f4f6f8',
+        padding: '16px 0',
+        borderRadius: 2,
+        boxShadow: 3,
         flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: 300,
-          boxSizing: 'border-box',
-          backgroundColor: '#f4f6f8',
-          padding: '16px 0',
-        },
+        overflowY: 'auto',
+        maxHeight: '100%',
       }}
     >
       <List
@@ -32,22 +31,26 @@ function WaterSidebar({ resources, onSelect }) {
           </ListSubheader>
         }
       >
-        {resources.map((resource) => (
+        {resources.map((resource, index) => (
           <ListItem
             button
-            key={resource.id}
+            key={resource.id + index}
             onClick={() => onSelect(resource)}
             sx={{ px: 3 }}
           >
             <ListItemText
               primary={<Typography variant="subtitle1">{resource.name}</Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">{resource.type}</Typography>}
+              secondary={
+                <Typography variant="body2" color="text.secondary">
+                  {resource.type}
+                </Typography>
+              }
             />
           </ListItem>
         ))}
       </List>
       <Divider />
-    </Drawer>
+    </Box>
   );
 }
 
