@@ -1,5 +1,7 @@
 import React from 'react';
 import WaterMap from './components/water-map.js';
+import { ApolloProvider } from '@apollo/client';
+import apolloClient from './services/apollo-client.js';
 
 const styles = {
   pageContainer: {
@@ -20,11 +22,13 @@ const styles = {
 
 function App() {
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.mapContainer}>
-        <WaterMap />
+    <ApolloProvider client={apolloClient}>
+      <div style={styles.pageContainer}>
+        <div style={styles.mapContainer}>
+          <WaterMap />
+        </div>
       </div>
-    `</div>
+    </ApolloProvider>
   );
 }
 
