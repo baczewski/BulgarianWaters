@@ -13,7 +13,7 @@ class WaterResourceService {
         this.resourceTypes = Object.keys(this.resourceTypeMap);
     }
 
-    async getAll(offset, limit, type) {
+    async getAll(offset, limit, type, minCapacity, minSurfaceArea) {
         let typeFilter = '';
         if (type && this.resourceTypeMap[type]) {
             typeFilter = `VALUES ?typeId { ${this.resourceTypeMap[type]} }`;
@@ -21,8 +21,24 @@ class WaterResourceService {
             typeFilter = `VALUES ?typeId { ${Object.values(this.resourceTypeMap).join('\n\t\t\t')} }`;
         }
 
+        let capacityFilter = '';
+        if (minCapacity) {
+            capacityFilter = `
+                ?item wdt:P2234 ?capacity.
+                FILTER(?capacity >= ${minCapacity}).
+            `;
+        }
+
+        let surfaceAreaFilter = '';
+        if (minSurfaceArea) {
+            surfaceAreaFilter = `
+                ?item wdt:P2046 ?surfaceArea.
+                FILTER(?surfaceArea >= ${minSurfaceArea}).
+            `;
+        }
+
         const query = `
-            SELECT ?item ?itemLabel ?typeId ?typeLabel ?coord ?capacity WHERE {
+            SELECT ?item ?itemLabel ?typeId ?typeLabel ?coord ?capacity ?surfaceArea WHERE {
                 ?item wdt:P17 wd:Q219. # Located in Bulgaria
                 
                 ${typeFilter}
@@ -31,15 +47,21 @@ class WaterResourceService {
                 
                 ?typeId rdfs:label ?typeLabel.
                 FILTER(LANG(?typeLabel) = "en")
+
+                ${capacityFilter}
+                ${surfaceAreaFilter}
                 
                 OPTIONAL { ?item wdt:P625 ?coord. }
                 OPTIONAL { ?item wdt:P2234 ?capacity. }
+                OPTIONAL { ?item wdt:P2046 ?surfaceArea. }
                 
                 SERVICE wikibase:label { bd:serviceParam wikibase:language "bg,en". }
             }
             LIMIT ${limit}
             OFFSET ${offset}
         `;
+
+        console.log(query)
 
         return await this.sparqlClient.fetch(query);
     }

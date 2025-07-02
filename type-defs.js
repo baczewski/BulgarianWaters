@@ -18,6 +18,8 @@ export const typeDefs = gql`
         name: String!
         type: WaterSourceType!
         coordinates: Coordinates
+        capacity: Float
+        surfaceArea: Float
     }
 
     type Query {
@@ -27,6 +29,8 @@ export const typeDefs = gql`
             limit: Int
             offset: Int
             type: WaterSourceType
+            minCapacity: Float
+            minSurfaceArea: Float
         ): [WaterResource]
 
         waterResource(

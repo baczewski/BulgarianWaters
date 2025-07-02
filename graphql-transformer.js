@@ -14,7 +14,9 @@ class GraphqlTransformer {
                 coordinates: {
                     longitude,
                     latitude
-                }
+                },
+                capacity: binding.capacity.value,
+                surfaceArea: binding.surfaceArea.value
             };
         });
 
