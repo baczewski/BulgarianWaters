@@ -1,27 +1,43 @@
-import React from 'react';
-import { Popup } from 'react-map-gl/mapbox';
+import React from "react";
+import { Popup } from "react-map-gl/mapbox";
+import { Box, Typography, Link, Divider } from "@mui/material";
 
 function WaterPopup({ resource, onClose }) {
   return (
     <Popup
-        longitude={resource.coordinates.longitude}
-        latitude={resource.coordinates.latitude}
-        anchor="top"
-        onClose={onClose}
+      longitude={resource.coordinates.longitude}
+      latitude={resource.coordinates.latitude}
+      anchor="top"
+      closeButton={true}
+      closeOnClick={false}
+      onClose={onClose}
+      maxWidth="300px"
     >
-        <div className="text-sm">
-            <strong>{resource.name}</strong>
-            <br />
-            Type: {resource.type}
-            <br />
-            <a
-                href={resource.id}
-                target="_blank"
-                rel="noopener noreferrer"
-                >
-                View on Wikidata
-            </a>
-        </div>
+      <Box sx={{ p: 2, maxWidth: 300 }}>
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
+          {resource.name}
+        </Typography>
+        <Divider sx={{ mb: 1 }} />
+        <Typography variant="body2" color="text.secondary" gutterBottom>
+          <strong>Type:</strong> {resource.type}
+        </Typography>
+
+        {/* {resource.description && (
+          <Typography variant="body2" sx={{ mt: 1, mb: 1 }}>
+            {resource.description}
+          </Typography>
+        )} */}
+
+        <Link
+          href={resource.id}
+          target="_blank"
+          rel="noopener noreferrer"
+          underline="hover"
+          sx={{ fontWeight: "bold", color: "primary.main" }}
+        >
+          View on Wikidata
+        </Link>
+      </Box>
     </Popup>
   );
 }
