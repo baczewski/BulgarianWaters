@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Map, { NavigationControl, Marker, Popup } from 'react-map-gl/mapbox';
+import Map, { NavigationControl } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import WaterMarker from './water-marker';
+import WaterPopup from './water-popup';
 
-// const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoidHJhZmZpayIsImEiOiJjbWNrdTBqeGgwNGE0MmpzN28wa203NTVrIn0.t4f5Fda423jAlQlO-jE1fw';
 
 const waterResources = [
     {
@@ -133,22 +133,26 @@ function WaterMap() {
             ))}
 
             {selectedResource && (
-                <Popup
-                    longitude={selectedResource.coordinates.longitude}
-                    latitude={selectedResource.coordinates.latitude}
-                    anchor="top"
+                <WaterPopup 
+                    resource={selectedResource}
                     onClose={() => setSelectedResource(null)}
-                >
-                    <div>
-                        <strong>{selectedResource.name}</strong>
-                        <br />
-                        Type: {selectedResource.type}
-                        <br />
-                        <a href={selectedResource.id} target="_blank" rel="noopener noreferrer">
-                        View on Wikidata
-                        </a>
-                    </div>
-                </Popup>
+                />
+                // <Popup
+                //     longitude={selectedResource.coordinates.longitude}
+                //     latitude={selectedResource.coordinates.latitude}
+                //     anchor="top"
+                //     onClose={() => setSelectedResource(null)}
+                // >
+                //     <div>
+                //         <strong>{selectedResource.name}</strong>
+                //         <br />
+                //         Type: {selectedResource.type}
+                //         <br />
+                //         <a href={selectedResource.id} target="_blank" rel="noopener noreferrer">
+                //         View on Wikidata
+                //         </a>
+                //     </div>
+                // </Popup>
             )}
 
         </Map>
