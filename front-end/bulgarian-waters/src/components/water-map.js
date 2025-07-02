@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Map, { NavigationControl, Marker, Popup } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import WaterMarker from './water-marker';
 
+// const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoidHJhZmZpayIsImEiOiJjbWNrdTBqeGgwNGE0MmpzN28wa203NTVrIn0.t4f5Fda423jAlQlO-jE1fw';
 
 const waterResources = [
     {
@@ -122,18 +124,12 @@ function WaterMap() {
         >
             <NavigationControl position='top-right' />
 
-            {waterResources.map((resource, index) => (
-                <Marker
-                    key={index}
-                    longitude={resource.coordinates.longitude}
-                    latitude={resource.coordinates.latitude}
-                    anchor='bottom'
-                    onClick={(e) => {
-                        e.originalEvent.stopPropagation();
-                        setSelectedResource(resource);  
-                    }}
-                >
-                </Marker>
+            {waterResources.map((resource) => (
+                <WaterMarker 
+                    key={resource.id}
+                    resource={resource}
+                    onClick={setSelectedResource}
+                />
             ))}
 
             {selectedResource && (
