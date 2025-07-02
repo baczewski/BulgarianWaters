@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Map, { NavigationControl, Marker } from 'react-map-gl/mapbox';
+import React, { useState } from 'react';
+import Map, { NavigationControl, Marker, Popup } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
@@ -107,6 +107,8 @@ const waterResources = [
   
 
 function WaterMap() {
+    const [selectedResource, setSelectedResource] = useState(null);
+
     return (
         <Map 
             mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
@@ -126,9 +128,32 @@ function WaterMap() {
                     longitude={resource.coordinates.longitude}
                     latitude={resource.coordinates.latitude}
                     anchor='bottom'
+                    onClick={(e) => {
+                        e.originalEvent.stopPropagation();
+                        setSelectedResource(resource);  
+                    }}
                 >
                 </Marker>
             ))}
+
+            {selectedResource && (
+                <Popup
+                    longitude={selectedResource.coordinates.longitude}
+                    latitude={selectedResource.coordinates.latitude}
+                    anchor="top"
+                    onClose={() => setSelectedResource(null)}
+                >
+                    <div>
+                        <strong>{selectedResource.name}</strong>
+                        <br />
+                        Type: {selectedResource.type}
+                        <br />
+                        <a href={selectedResource.id} target="_blank" rel="noopener noreferrer">
+                        View on Wikidata
+                        </a>
+                    </div>
+                </Popup>
+            )}
 
         </Map>
     );
