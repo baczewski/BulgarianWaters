@@ -80,8 +80,6 @@ class WaterResourceService {
             OFFSET ${offset}
         `;
 
-        console.log(query)
-
         return await this.sparqlClient.fetch(query);
     }
 

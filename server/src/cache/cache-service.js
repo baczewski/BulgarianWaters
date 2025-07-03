@@ -2,7 +2,12 @@ import { createClient } from 'redis';
 
 class CacheService {
     constructor() {
-        this.client = createClient();
+        this.client = createClient({
+            socket: {
+                host: 'redis',
+                port: 6379
+            }
+        });
         this.client.connect().catch((err) => console.error(err));
     }
 
