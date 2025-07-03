@@ -40,7 +40,7 @@ class WaterResourceService {
         const query = `
             SELECT 
                 ?itemLabel 
-                (SAMPLE(?item) AS ?item) 
+                (SAMPLE(?item) AS ?item)
                 (SAMPLE(?typeId) AS ?typeId) 
                 (SAMPLE(?typeLabel) AS ?typeLabel) 
                 (SAMPLE(?coord) AS ?coord) 
@@ -53,6 +53,9 @@ class WaterResourceService {
                 ${typeFilter}
                 
                 ?item wdt:P31/wdt:P279* ?typeId.
+
+                ?item rdfs:label ?itemLabel.
+                FILTER(LANG(?itemLabel) = "en")
                 
                 ?typeId rdfs:label ?typeLabel.
                 FILTER(LANG(?typeLabel) = "en")
@@ -69,9 +72,10 @@ class WaterResourceService {
                     FILTER(LANG(?description) = "en")
                 }
                 
-                SERVICE wikibase:label { bd:serviceParam wikibase:language "bg,en". }
+                SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
             }
             GROUP BY ?itemLabel
+            ORDER BY ASC (?itemLabel)
             LIMIT ${limit}
             OFFSET ${offset}
         `;
