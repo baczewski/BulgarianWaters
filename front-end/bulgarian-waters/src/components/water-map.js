@@ -25,6 +25,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import debounce from "lodash.debounce";
 
 
+
 const ALL_TYPES = ["All", "Dam", "Lake", "Reservoir", "River"];
 
 function WaterMap() {
@@ -39,7 +40,7 @@ function WaterMap() {
   const [appliedFilters, setAppliedFilters] = useState(filters);
 
   const variables = useMemo(() => {
-    const vars = { limit: 20, offset: 0 };
+    const vars = { limit: 50, offset: 0 };
     if (appliedFilters.type !== "ALL") vars.type = appliedFilters.type;
     if (appliedFilters.minCapacity) vars.minCapacity = parseFloat(appliedFilters.minCapacity);
     if (appliedFilters.minSurfaceArea)
