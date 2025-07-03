@@ -1,4 +1,4 @@
-# Bulgaria Waters
+# Bulgaria Waters - Graph Databases Final Project
 
 ## Project Overview
 
