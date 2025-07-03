@@ -34,15 +34,21 @@ function WaterPopup({ resource, onClose }) {
             <strong>Type:</strong> {resource.type}
           </Typography>
 
+          {resource.description && (
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              <strong>Description:</strong> {resource.description}
+            </Typography>
+          )}
+
           {resource.capacity && (
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              <strong>Capacity:</strong> {resource.capacity}
+              <strong>Capacity:</strong> {resource.capacity} m³
             </Typography>
           )}
 
           {resource.surfaceArea && (
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              <strong>Surface Area:</strong> {resource.surfaceArea}
+              <strong>Surface Area:</strong> {resource.surfaceArea} km²
             </Typography>
           )}
 

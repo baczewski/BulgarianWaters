@@ -20,6 +20,7 @@ export const typeDefs = gql`
         coordinates: Coordinates
         capacity: Float
         surfaceArea: Float
+        description: String
     }
 
     type Query {

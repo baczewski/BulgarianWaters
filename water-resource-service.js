@@ -46,6 +46,7 @@ class WaterResourceService {
                 (SAMPLE(?coord) AS ?coord) 
                 (SAMPLE(?capacity) AS ?capacity) 
                 (SAMPLE(?surfaceArea) AS ?surfaceArea)
+                (SAMPLE(?description) AS ?description)
             WHERE {
                 ?item wdt:P17 wd:Q219. # Located in Bulgaria
                 
@@ -62,6 +63,11 @@ class WaterResourceService {
                 OPTIONAL { ?item wdt:P625 ?coord. }
                 OPTIONAL { ?item wdt:P2234 ?capacity. }
                 OPTIONAL { ?item wdt:P2046 ?surfaceArea. }
+
+                OPTIONAL {
+                    ?item schema:description ?description.
+                    FILTER(LANG(?description) = "en")
+                }
                 
                 SERVICE wikibase:label { bd:serviceParam wikibase:language "bg,en". }
             }

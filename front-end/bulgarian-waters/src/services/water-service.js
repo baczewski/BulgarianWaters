@@ -24,6 +24,7 @@ export const GET_WATER_RESOURCES = gql`
         latitude
         longitude
       }
+      description
     }
   }
 `;

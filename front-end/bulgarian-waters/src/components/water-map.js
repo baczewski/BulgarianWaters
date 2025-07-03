@@ -24,7 +24,8 @@ import {
 import FilterListIcon from "@mui/icons-material/FilterList";
 import debounce from "lodash.debounce";
 
-
+const MAPBOX_ACCESS_TOKEN =
+  "pk.eyJ1IjoidHJhZmZpayIsImEiOiJjbWNrdTBqeGgwNGE0MmpzN28wa203NTVrIn0.t4f5Fda423jAlQlO-jE1fw";
 
 const ALL_TYPES = ["All", "Dam", "Lake", "Reservoir", "River"];
 
@@ -171,7 +172,11 @@ function WaterMap() {
       </Box>
 
       <Box sx={{ p: 1 }}>
-        <WaterSidebar resources={data.waterResources} onSelect={setSelectedResource} />
+        <WaterSidebar
+          resources={data.waterResources}
+          onSelect={setSelectedResource}
+          selectedId={selectedResource ? selectedResource.id : null}
+        />
       </Box>
     </Box>
   );

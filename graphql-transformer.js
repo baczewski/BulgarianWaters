@@ -17,6 +17,7 @@ class GraphqlTransformer {
         },
         capacity: binding.capacity?.value,
         surfaceArea: binding.surfaceArea?.value,
+        description: binding.description?.value
       };
     });
 
