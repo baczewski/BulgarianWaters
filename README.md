@@ -1,9 +1,9 @@
-# Bulgaria Waters - Graph Databases Final Project
+# Bulgarian Waters - Graph Databases Final Project
 
 ## Project Overview
 
 ### Goals  
-The Bulgaria Waters project aims to provide an interactive platform for exploring, visualizing, and analyzing Bulgaria’s water resources. It combines a graph database backend with a React frontend to allow users to efficiently query and navigate detailed information about rivers, dams, lakes, and reservoirs across Bulgaria.
+The Bulgarian Waters project aims to provide an interactive platform for exploring, visualizing, and analyzing Bulgaria’s water resources. It combines a graph database backend with a React frontend to allow users to efficiently query and navigate detailed information about rivers, dams, lakes, and reservoirs across Bulgaria.
 
 ### Data Used  
 Water resource data is sourced from WikiData and includes geographical coordinates, descriptions, types, capacities, surface areas, and other relevant attributes. The data is modeled as a graph and served via a GraphQL API.
@@ -31,7 +31,7 @@ Water resource data is sourced from WikiData and includes geographical coordinat
 
 ## Frontend Application
 
-The frontend of Bulgaria Waters is a React-based web application designed to provide an interactive and user-friendly way to explore Bulgaria's water resources on a map.
+The frontend of Bulgarian Waters is a React-based web application designed to provide an interactive and user-friendly way to explore Bulgaria's water resources on a map.
 
 ### Key Features:
 
