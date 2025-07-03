@@ -25,7 +25,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import debounce from "lodash.debounce";
 
 const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1IjoidHJhZmZpayIsImEiOiJjbWNrdTBqeGgwNGE0MmpzN28wa203NTVrIn0.t4f5Fda423jAlQlO-jE1fw";
+  "<ENTER_VALID_TOKEN>";
 
 const ALL_TYPES = ["All", "Dam", "Lake", "Reservoir", "River"];
 
