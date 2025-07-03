@@ -31,6 +31,8 @@ The frontend of Bulgaria Waters is a React-based web application designed to pro
 - **Responsive UI with Material-UI**:  
   The interface leverages Material-UI (`@mui/material`) components for styling, layout, and controls, providing a clean, accessible, and responsive user experience.
 
+![Example screenshot of the website](assets/bulgaria-waters-map.png)
+
 ---
 
 ## Getting Started
