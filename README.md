@@ -1,9 +1,25 @@
-# Bulgaria Waters - Graph Databases Project
+# Bulgaria Waters
 
-Bulgaria Waters is composed of two main components: a React-based client application and a GraphQL API.  
-The GraphQL API delivers detailed information about Bulgaria’s water resources—including rivers, dams, lakes, and reservoirs.  
-This data is sourced from WikiData and includes attributes such as descriptions, locations, capacities, and more.  
-The project enables efficient querying and analysis of these water resources, with optimizations implemented to enhance performance.
+## Project Overview
+
+### Goals  
+The Bulgaria Waters project aims to provide an interactive platform for exploring, visualizing, and analyzing Bulgaria’s water resources. It combines a graph database backend with a React frontend to allow users to efficiently query and navigate detailed information about rivers, dams, lakes, and reservoirs across Bulgaria.
+
+### Data Used  
+Water resource data is sourced from WikiData and includes geographical coordinates, descriptions, types, capacities, surface areas, and other relevant attributes. The data is modeled as a graph and served via a GraphQL API.
+
+### Methods Applied  
+- **GraphQL API** for flexible and optimized querying of water resource data.  
+- **Redis caching** to improve response times and reduce backend load.  
+- **React frontend** using Mapbox GL for interactive map visualization.  
+- **Material-UI** for a responsive and user-friendly interface with filtering and search capabilities.
+
+### Results  
+- A responsive, easy-to-use web application showcasing Bulgaria’s water resources on an interactive map.  
+- Efficient backend queries enabled by GraphQL and caching.  
+- Extensible architecture ready for future enhancements and additional data integration.
+
+---
 
 ## Features
 
