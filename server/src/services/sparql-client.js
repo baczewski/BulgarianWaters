@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { cacheService } from './cache-service.js';
+import { cacheService } from '../cache/cache-service.js';
 
 class SparqlClient {
     constructor() {

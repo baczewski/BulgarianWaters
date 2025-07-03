@@ -1,5 +1,5 @@
-import { graphqlTransformer } from "./graphql-transformer.js";
-import { waterResourceService } from "./water-resource-service.js";
+import { graphqlTransformer } from "../services/graphql-transformer.js";
+import { waterResourceService } from "../services/water-resource-service.js";
 
 export const resolvers = {
     Query: {
