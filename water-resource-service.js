@@ -38,7 +38,15 @@ class WaterResourceService {
         }
 
         const query = `
-            SELECT ?item ?itemLabel ?typeId ?typeLabel ?coord ?capacity ?surfaceArea WHERE {
+            SELECT 
+                ?itemLabel 
+                (SAMPLE(?item) AS ?item) 
+                (SAMPLE(?typeId) AS ?typeId) 
+                (SAMPLE(?typeLabel) AS ?typeLabel) 
+                (SAMPLE(?coord) AS ?coord) 
+                (SAMPLE(?capacity) AS ?capacity) 
+                (SAMPLE(?surfaceArea) AS ?surfaceArea)
+            WHERE {
                 ?item wdt:P17 wd:Q219. # Located in Bulgaria
                 
                 ${typeFilter}
@@ -57,6 +65,7 @@ class WaterResourceService {
                 
                 SERVICE wikibase:label { bd:serviceParam wikibase:language "bg,en". }
             }
+            GROUP BY ?itemLabel
             LIMIT ${limit}
             OFFSET ${offset}
         `;
